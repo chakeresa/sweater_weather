@@ -20,8 +20,5 @@ class ForecastShowFacade
   
   def lat_long_hash
     @lat_long_hash ||= location_hash[:results].first[:geometry][:location]
-    lat = @lat_long_hash[:lat]
-    long = @lat_long_hash[:lng]
-    require 'pry'; binding.pry
   end
 end

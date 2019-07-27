@@ -1,7 +1,7 @@
 class GoogleGeocodingApi
   attr_reader :location_string
 
-  def initialize(parameters =  {})
+  def initialize(parameters = {})
     @location_string = parameters[:location_string]
   end
 
