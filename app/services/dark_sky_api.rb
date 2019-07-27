@@ -1,6 +1,4 @@
-# https://api.darksky.net/forecast/<key>/<lat>,<long>
-
-class DarkSkyApi
+class DarkSkyApi < ApiService
   attr_reader :lat, :long
 
   def initialize(parameters = {})
@@ -23,11 +21,5 @@ class DarkSkyApi
       faraday.adapter Faraday.default_adapter
       faraday.params['exclude'] = 'minutely'
     end
-  end
-
-  # TODO: move fetch_data into parent of both API services
-  def fetch_data(uri_path, params = {})
-    response = conn.get uri_path, params
-    JSON.parse response.body, symbolize_names: true
   end
 end
