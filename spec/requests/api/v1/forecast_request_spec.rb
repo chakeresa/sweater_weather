@@ -10,12 +10,17 @@ describe "Forecast Endpoint" do
   end
 
   it "response includes query details" do
-    query_details = JSON.parse(response.body, symbolize_names: true)[:meta]
+    meta = JSON.parse(response.body, symbolize_names: true)[:meta]
     
-    expect(query_details).to have_key(:city_state)
-    expect(query_details).to have_key(:country)
-    expect(query_details).to have_key(:time)
-    expect(query_details).to have_key(:date)
+    expect(meta).to have_key(:time)
+    expect(meta).to have_key(:date)
+
+    expect(meta[:location_hash]).to have_key(:city)
+    expect(meta[:location_hash]).to have_key(:state)
+    expect(meta[:location_hash]).to have_key(:country)
+    
+    expect(meta[:data_source]).to have_key(:message)
+    expect(meta[:data_source]).to have_key(:link)
   end
   
   it "response includes current weather info" do

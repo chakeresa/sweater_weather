@@ -22,6 +22,9 @@ describe DarkSkyApi do
     service = DarkSkyApi.new(lat_lng_hash)
     result = service.forecast
     
+    expect(result).to have_key(:offset) # UTC offset
+
+    expect(result[:currently]).to have_key(:time)
     expect(result[:currently]).to have_key(:summary)
     expect(result[:currently]).to have_key(:icon)
     expect(result[:currently]).to have_key(:temperature)

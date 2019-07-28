@@ -7,7 +7,6 @@ class DarkSkyApi < ApiService
   end
 
   def forecast
-    # TODO: don't need minutely data -- exclude from API call
     uri_path = "/forecast/#{ENV['DARK_SKY_API_KEY']}/#{@lat},#{@long}"
     forecast_hash = fetch_data(uri_path)
     raise 'Bad Dark Sky API key' if forecast_hash[:error]
