@@ -3,7 +3,7 @@ class ForecastShowFacade
     @location_string = location_string
   end
 
-  def location_hash
+  def location
     address_hash = api_location_hash[:results].first[:address_components]
     city = address_hash[-4][:long_name]
     state = address_hash[-2][:short_name]
@@ -19,7 +19,7 @@ class ForecastShowFacade
     {
       time: current_time,
       date: current_date,
-      location_hash: location_hash,
+      location: location,
       data_source: data_source
     }
   end

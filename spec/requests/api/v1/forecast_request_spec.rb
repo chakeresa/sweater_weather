@@ -15,10 +15,10 @@ describe "Forecast Endpoint" do
     expect(meta).to have_key(:time)
     expect(meta).to have_key(:date)
 
-    expect(meta[:location_hash]).to have_key(:city)
-    expect(meta[:location_hash]).to have_key(:state)
-    expect(meta[:location_hash]).to have_key(:country)
-    
+    expect(meta[:location]).to have_key(:city)
+    expect(meta[:location]).to have_key(:state)
+    expect(meta[:location]).to have_key(:country)
+
     expect(meta[:data_source]).to have_key(:message)
     expect(meta[:data_source]).to have_key(:link)
   end
