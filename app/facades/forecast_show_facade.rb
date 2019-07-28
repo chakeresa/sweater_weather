@@ -3,30 +3,13 @@ class ForecastShowFacade
     @location_string = location_string
   end
 
-  def location
-    address_hash = api_location_hash[:results].first[:address_components]
-    city = address_hash[-4][:long_name]
-    state = address_hash[-2][:short_name]
-    country = address_hash[-1][:long_name]
-    { city: city, state: state, country: country }
-  end
-
-  def data_source
-    { message: 'Powered by Dark Sky', link: 'https://darksky.net/poweredby/' }
-  end
-
-  def meta
-    {
-      time: current_time,
-      date: current_date,
-      location: location,
-      data_source: data_source
-    }
-  end
-
   def full_response
+    parameters = {
+      api_location_hash: api_location_hash,
+      forecast_hash: forecast_hash
+    }
     {
-      meta: meta,
+      meta: Forecast::Metadata.new(parameters).data,
       data: data
     }
   end
@@ -73,28 +56,10 @@ class ForecastShowFacade
     forecast_hash[:currently]
   end
 
-  def current_time
-    current_datetime.strftime("%-l:%M %p")
-  end
-  
-  def current_date
-    current_datetime.strftime("%-m/%-d")
-  end
-
-  def current_datetime
-    epoch = forecast_hash[:currently][:time]
-    Time.at(epoch).in_time_zone(utc_offset)
-  end
-
-  def utc_offset
-    forecast_hash[:offset]
-  end
-
   # day_of_week = Time.at(1564267265).strftime("%A")
 
-  
   private
-  
+
   def google_geocoding_api
     parameters = { location_string: @location_string }
     @google_geocoding_api ||= GoogleGeocodingApi.new(parameters)
@@ -103,7 +68,7 @@ class ForecastShowFacade
   def api_location_hash
     @api_location_hash ||= google_geocoding_api.geocoding_results
   end
-  
+
   def lat_lng_hash
     @lat_lng_hash ||= api_location_hash[:results].first[:geometry][:location]
   end
