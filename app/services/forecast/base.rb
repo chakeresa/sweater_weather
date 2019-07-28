@@ -17,6 +17,10 @@ class Forecast::Base
   def time(epoch)
     datetime(epoch).strftime("%-l:%M %p")
   end
+  
+  def hour(epoch)
+    datetime(epoch).strftime("%-l %p")
+  end
 
   def date(epoch)
     datetime(epoch).strftime("%-m/%-d")

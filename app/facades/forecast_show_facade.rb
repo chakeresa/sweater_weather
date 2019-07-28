@@ -18,7 +18,8 @@ class ForecastShowFacade
     parameters = { forecast_hash: forecast_hash }
     {
       currently: Forecast::Current.new(parameters).data,
-      daily: Forecast::Daily.new(parameters).data.first(5)
+      daily: Forecast::Daily.new(parameters).data.first(5),
+      hourly: Forecast::Hourly.new(parameters).data.first(8)
     }
   end
 
