@@ -9,4 +9,20 @@ class Forecast::Base
   def utc_offset
     @forecast_hash[:offset]
   end
+
+  def datetime(epoch)
+    Time.at(epoch).in_time_zone(utc_offset)
+  end
+
+  def time(epoch)
+    datetime(epoch).strftime("%-l:%M %p")
+  end
+
+  def date(epoch)
+    datetime(epoch).strftime("%-m/%-d")
+  end
+
+  def day_of_week(epoch)
+    datetime(epoch).strftime("%A")
+  end
 end

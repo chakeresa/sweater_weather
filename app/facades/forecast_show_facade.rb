@@ -17,11 +17,10 @@ class ForecastShowFacade
   def data
     parameters = { forecast_hash: forecast_hash }
     {
-      currently: Forecast::Current.new(parameters).data
+      currently: Forecast::Current.new(parameters).data,
+      daily: Forecast::Daily.new(parameters).data.first(5)
     }
   end
-
-  # day_of_week = Time.at(1564267265).strftime("%A")
 
   private
 

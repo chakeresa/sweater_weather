@@ -1,8 +1,8 @@
 class Forecast::Metadata < Forecast::Base
   def data
     {
-      time: current_time,
-      date: current_date,
+      time: time(epoch),
+      date: date(epoch),
       location: location,
       data_source: data_source
     }
@@ -10,17 +10,8 @@ class Forecast::Metadata < Forecast::Base
   
   private
 
-  def current_datetime
-    epoch = @forecast_hash[:currently][:time]
-    Time.at(epoch).in_time_zone(utc_offset)
-  end
-  
-  def current_time
-    current_datetime.strftime("%-l:%M %p")
-  end
-  
-  def current_date
-    current_datetime.strftime("%-m/%-d")
+  def epoch
+    @forecast_hash[:currently][:time]
   end
 
   def location
