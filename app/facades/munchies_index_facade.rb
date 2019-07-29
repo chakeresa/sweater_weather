@@ -7,7 +7,8 @@ class MunchiesIndexFacade
 
   def full_response
     # TODO
-    duration
+    arrival_epoch
+    require 'pry'; binding.pry
   #   parameters = {
   #     api_location_hash: api_location_hash,
   #     forecast_hash: forecast_hash
@@ -18,9 +19,12 @@ class MunchiesIndexFacade
   #   }
   end
 
-  def duration
-    api_directions_hash
-    require 'pry'; binding.pry
+  def duration_in_seconds
+    api_directions_hash[:routes].first[:legs].first[:duration][:value]
+  end
+
+  def arrival_epoch
+    Time.now.to_i + duration_in_seconds
   end
 
   private
