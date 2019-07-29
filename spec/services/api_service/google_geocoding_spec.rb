@@ -1,23 +1,23 @@
 require 'spec_helper'
-require './app/services/api_service'
-require './app/services/google_geocoding_api'
+require './app/services/api_service/base'
+require './app/services/api_service/google_geocoding'
 require 'faraday'
 require './config/application'
 
-describe GoogleGeocodingApi do
+describe ApiService::GoogleGeocoding do
   it 'exists' do
-    expect(subject).to be_a(GoogleGeocodingApi)
+    expect(subject).to be_a(ApiService::GoogleGeocoding)
   end
 
   it 'initializes with location_string' do
     location_string = 'denver, co'
-    service = GoogleGeocodingApi.new({ location_string: location_string })
+    service = ApiService::GoogleGeocoding.new({ location_string: location_string })
     expect(service.location_string).to eq(location_string)
   end
   
   it '#geocoding_results returns formatted location and lat/long' do
     location_string = 'denver, co'
-    service = GoogleGeocodingApi.new({ location_string: location_string })
+    service = ApiService::GoogleGeocoding.new({ location_string: location_string })
     result = service.geocoding_results
     
     expect(result).to have_key(:results)
@@ -27,7 +27,7 @@ describe GoogleGeocodingApi do
   end
   
   it '#geocoding_results raises an error if the API response is bad' do
-    service = GoogleGeocodingApi.new({ location_string: 'denver, co' })
+    service = ApiService::GoogleGeocoding.new({ location_string: 'denver, co' })
 
     stub_const('ENV', {'GOOGLE_MAPS_API_KEY' => 'blah'})
 

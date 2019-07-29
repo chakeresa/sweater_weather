@@ -1,4 +1,4 @@
-class DarkSkyApi < ApiService
+class ApiService::DarkSky < ApiService::Base
   attr_reader :lat, :long
 
   def initialize(parameters = {})

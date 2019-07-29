@@ -1,4 +1,4 @@
-class GoogleGeocodingApi < ApiService
+class ApiService::GoogleGeocoding < ApiService::Base
   attr_reader :location_string
 
   def initialize(parameters = {})

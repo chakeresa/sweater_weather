@@ -1,17 +1,17 @@
 require 'spec_helper'
-require './app/services/api_service'
-require './app/services/dark_sky_api'
+require './app/services/api_service/base'
+require './app/services/api_service/dark_sky'
 require 'faraday'
 require './config/application'
 
-describe DarkSkyApi do
+describe ApiService::DarkSky do
   it 'exists' do
-    expect(subject).to be_a(DarkSkyApi)
+    expect(subject).to be_a(ApiService::DarkSky)
   end
 
   it 'initializes with location_string' do
     lat_lng_hash = { lat: 37.8267, lng: -122.4233 }
-    service = DarkSkyApi.new(lat_lng_hash)
+    service = ApiService::DarkSky.new(lat_lng_hash)
     
     expect(service.lat).to eq(lat_lng_hash[:lat])
     expect(service.long).to eq(lat_lng_hash[:lng])
@@ -19,7 +19,7 @@ describe DarkSkyApi do
   
   it '#forecast returns forecasted data' do
     lat_lng_hash = { lat: 37.8267, lng: -122.4233 }
-    service = DarkSkyApi.new(lat_lng_hash)
+    service = ApiService::DarkSky.new(lat_lng_hash)
     result = service.forecast
     
     expect(result).to have_key(:offset) # UTC offset
@@ -50,7 +50,7 @@ describe DarkSkyApi do
   
   it '#forecast raises an error if the API response is bad' do
     lat_lng_hash = { lat: 37.8267, lng: -122.4233 }
-    service = DarkSkyApi.new(lat_lng_hash)
+    service = ApiService::DarkSky.new(lat_lng_hash)
 
     stub_const('ENV', {'DARK_SKY_API_KEY' => 'blah'})
 
