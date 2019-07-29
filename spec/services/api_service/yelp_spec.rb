@@ -5,51 +5,44 @@ describe ApiService::Yelp do
     expect(subject).to be_a(ApiService::Yelp)
   end
 
-  # it 'initializes with location_string' do
-  #   lat_lng_hash = { lat: 37.8267, lng: -122.4233 }
-  #   service = ApiService::Yelp.new(lat_lng_hash)
+  it 'initializes with location, food_type, and epoch' do
+    parameters = { 
+      location: 'pueblo, co',
+      food_type: 'chinese',
+      epoch: 1564421959
+    }
+    service = ApiService::Yelp.new(parameters)
     
-  #   expect(service.lat).to eq(lat_lng_hash[:lat])
-  #   expect(service.long).to eq(lat_lng_hash[:lng])
-  # end
+    expect(service.location).to eq(parameters[:location])
+    expect(service.food_type).to eq(parameters[:food_type])
+    expect(service.epoch).to eq(parameters[:epoch])
+  end
   
-  # it '#forecast returns forecasted data' do
-  #   lat_lng_hash = { lat: 37.8267, lng: -122.4233 }
-  #   service = ApiService::Yelp.new(lat_lng_hash)
-  #   result = service.forecast
+  it '#restaurants returns data for many restaurants' do
+    parameters = { 
+      location: 'pueblo, co',
+      food_type: 'chinese',
+      epoch: 1564421959
+    }
+    service = ApiService::Yelp.new(parameters)
+    result = service.restaurants
     
-  #   expect(result).to have_key(:offset) # UTC offset
-
-  #   expect(result[:currently]).to have_key(:time)
-  #   expect(result[:currently]).to have_key(:summary)
-  #   expect(result[:currently]).to have_key(:icon)
-  #   expect(result[:currently]).to have_key(:temperature)
-  #   expect(result[:currently]).to have_key(:apparentTemperature)
-  #   expect(result[:currently]).to have_key(:humidity)
-  #   expect(result[:currently]).to have_key(:visibility)
-  #   expect(result[:currently]).to have_key(:uvIndex)
-    
-  #   expect(result[:hourly][:data].count).to be >= 8
-  #   expect(result[:hourly][:data].first).to have_key(:time)
-  #   expect(result[:hourly][:data].first).to have_key(:icon)
-  #   expect(result[:hourly][:data].first).to have_key(:temperature)
-    
-  #   expect(result[:daily][:data].count).to be >= 5
-  #   expect(result[:daily][:data].first).to have_key(:time)
-  #   expect(result[:daily][:data].first).to have_key(:icon)
-  #   expect(result[:daily][:data].first).to have_key(:summary)
-  #   expect(result[:daily][:data].first).to have_key(:precipType)
-  #   expect(result[:daily][:data].first).to have_key(:precipProbability)
-  #   expect(result[:daily][:data].first).to have_key(:temperatureHigh)
-  #   expect(result[:daily][:data].first).to have_key(:temperatureLow)
-  # end
+    expect(result[:businesses]).to be_an(Array)
+    expect(result[:businesses].count).to be >= 3
+    expect(result[:businesses].first).to have_key(:name)
+    expect(result[:businesses].first[:location]).to have_key(:display_address)
+  end
   
-  # it '#forecast raises an error if the API response is bad' do
-  #   lat_lng_hash = { lat: 37.8267, lng: -122.4233 }
-  #   service = ApiService::Yelp.new(lat_lng_hash)
+  it '#restaurants raises an error if the API response is bad' do
+    parameters = { 
+      location: 'pueblo, co',
+      food_type: 'chinese',
+      epoch: 1564421959
+    }
+    service = ApiService::Yelp.new(parameters)
 
-  #   stub_const('ENV', {'YELP_API_KEY' => 'blah'})
+    stub_const('ENV', {'YELP_API_KEY' => 'blah'})
 
-  #   expect { service.forecast }.to raise_error('Bad Dark Sky API key')
-  # end
+    expect { service.restaurants }.to raise_error('Bad Yelp API key')
+  end
 end

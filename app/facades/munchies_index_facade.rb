@@ -18,17 +18,9 @@ class MunchiesIndexFacade
   #     data: data
   #   }
   end
-
-  def duration_in_seconds
-    api_directions_hash[:routes].first[:legs].first[:duration][:value]
-  end
-
-  def arrival_epoch
-    Time.now.to_i + duration_in_seconds
-  end
-
+  
   private
-
+  
   def google_geocoding_api
     parameters = { origin: @origin, destination: @destination }
     @google_geocoding_api ||= ApiService::GoogleGeocoding.new(parameters)
@@ -36,5 +28,13 @@ class MunchiesIndexFacade
   
   def api_directions_hash
     @api_directions_hash ||= google_geocoding_api.directions
+  end
+
+  def duration_in_seconds
+    api_directions_hash[:routes].first[:legs].first[:duration][:value]
+  end
+
+  def arrival_epoch
+    Time.now.to_i + duration_in_seconds
   end
 end

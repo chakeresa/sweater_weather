@@ -1,17 +1,24 @@
 class ApiService::Yelp < ApiService::Base
-  # attr_reader :lat, :long
+  attr_reader :location, :food_type, :epoch
 
-  # def initialize(parameters = {})
-  #   @lat = parameters[:lat]
-  #   @long = parameters[:lng]
-  # end
+  def initialize(parameters = {})
+    @location = parameters[:location]
+    @food_type = parameters[:food_type]
+    @epoch = parameters[:epoch]
+  end
 
-  # def forecast
-  #   uri_path = '/v3/businesses/search'
-  #   forecast_hash = fetch_json_data(uri_path, location: something)
-  #   raise 'Bad Yelp API key' if forecast_hash[:error]
-  #   forecast_hash
-  # end
+  def restaurants
+    uri_path = '/v3/businesses/search'
+    search_parameters = {
+      location: @location,
+      term: @food_type,
+      categories: 'food',
+      open_at: @epoch
+    }
+    forecast_hash = fetch_json_data(uri_path, search_parameters)
+    raise 'Bad Yelp API key' if forecast_hash[:error]
+    forecast_hash
+  end
 
   private
 
