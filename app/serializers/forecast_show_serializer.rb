@@ -1,4 +1,4 @@
-class ForecastShowFacade
+class ForecastShowSerializer
   def initialize(location_string)
     @location_string = location_string
   end

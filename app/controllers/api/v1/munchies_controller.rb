@@ -5,7 +5,7 @@ class Api::V1::MunchiesController < ApplicationController
       destination: params[:end],
       food_type: params[:food]
     }
-    facade = MunchiesIndexFacade.new(search_parameters)
-    render json: facade.full_response
+    serializer = MunchiesIndexSerializer.new(search_parameters)
+    render json: serializer.full_response
   end
 end
