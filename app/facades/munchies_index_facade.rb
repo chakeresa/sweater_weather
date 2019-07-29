@@ -14,13 +14,13 @@ class MunchiesIndexFacade
   
   private
   
-  def google_geocoding_api
+  def google_api
     parameters = { origin: @origin, destination: @destination }
-    @google_geocoding_api ||= ApiService::Google.new(parameters)
+    @google_api ||= ApiService::Google.new(parameters)
   end
   
   def api_directions_hash
-    @api_directions_hash ||= google_geocoding_api.directions
+    @api_directions_hash ||= google_api.directions
   end
 
   def duration_in_seconds
