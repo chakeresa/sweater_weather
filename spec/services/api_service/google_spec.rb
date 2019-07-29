@@ -1,25 +1,25 @@
 require 'rails_helper'
 
-describe ApiService::GoogleGeocoding do
+describe ApiService::Google do
   it 'exists' do
-    expect(subject).to be_a(ApiService::GoogleGeocoding)
+    expect(subject).to be_a(ApiService::Google)
   end
 
   it 'initializes with location_string, origin, and/or destination' do
     location_string = 'denver, co'
-    service1 = ApiService::GoogleGeocoding.new({ location_string: location_string })
+    service1 = ApiService::Google.new({ location_string: location_string })
     expect(service1.location_string).to eq(location_string)
 
     origin = 'denver, co'
     destination = 'pueblo, co'
-    service2 = ApiService::GoogleGeocoding.new({ origin: origin, destination: destination })
+    service2 = ApiService::Google.new({ origin: origin, destination: destination })
     expect(service2.origin).to eq(origin)
     expect(service2.destination).to eq(destination)
   end
   
   it '#geocoding_results returns formatted location and lat/long' do
     location_string = 'denver, co'
-    service = ApiService::GoogleGeocoding.new({ location_string: location_string })
+    service = ApiService::Google.new({ location_string: location_string })
     result = service.geocoding_results
     
     expect(result).to have_key(:results)
@@ -29,7 +29,7 @@ describe ApiService::GoogleGeocoding do
   end
   
   it '#geocoding_results raises an error if the API response is bad' do
-    service = ApiService::GoogleGeocoding.new({ location_string: 'denver, co' })
+    service = ApiService::Google.new({ location_string: 'denver, co' })
 
     stub_const('ENV', {'GOOGLE_MAPS_API_KEY' => 'blah'})
 
@@ -39,7 +39,7 @@ describe ApiService::GoogleGeocoding do
   it '#directions returns directions info from origin to destination' do
     origin = 'denver, co'
     destination = 'pueblo, co'
-    service = ApiService::GoogleGeocoding.new({ origin: origin, destination: destination })
+    service = ApiService::Google.new({ origin: origin, destination: destination })
     result = service.directions
     
     expect(result[:routes]).to be_an(Array)
@@ -50,7 +50,7 @@ describe ApiService::GoogleGeocoding do
   it '#directions raises an error if the API response is bad' do
     origin = 'denver, co'
     destination = 'pueblo, co'
-    service = ApiService::GoogleGeocoding.new({ origin: origin, destination: destination })
+    service = ApiService::Google.new({ origin: origin, destination: destination })
     
     stub_const('ENV', {'GOOGLE_MAPS_API_KEY' => 'blah'})
 

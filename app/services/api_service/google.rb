@@ -1,5 +1,4 @@
-# TODO: rename to be just Google
-class ApiService::GoogleGeocoding < ApiService::Base
+class ApiService::Google < ApiService::Base
   attr_reader :location_string, :origin, :destination
 
   def initialize(parameters = {})

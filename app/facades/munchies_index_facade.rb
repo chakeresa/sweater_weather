@@ -16,7 +16,7 @@ class MunchiesIndexFacade
   
   def google_geocoding_api
     parameters = { origin: @origin, destination: @destination }
-    @google_geocoding_api ||= ApiService::GoogleGeocoding.new(parameters)
+    @google_geocoding_api ||= ApiService::Google.new(parameters)
   end
   
   def api_directions_hash

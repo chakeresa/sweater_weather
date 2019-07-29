@@ -27,7 +27,7 @@ class ForecastShowFacade
 
   def google_geocoding_api
     parameters = { location_string: @location_string }
-    @google_geocoding_api ||= ApiService::GoogleGeocoding.new(parameters)
+    @google_geocoding_api ||= ApiService::Google.new(parameters)
   end
   
   def api_location_hash
