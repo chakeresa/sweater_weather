@@ -3,7 +3,7 @@ class Api::V1::MunchiesController < ApplicationController
     search_parameters = {
       origin: params[:start],
       destination: params[:end],
-      food: params[:food]
+      food_type: params[:food]
     }
     facade = MunchiesIndexFacade.new(search_parameters)
     render json: facade.full_response

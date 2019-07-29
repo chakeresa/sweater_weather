@@ -2,7 +2,7 @@ class MunchiesIndexFacade
   def initialize(parameters = {})
     @origin = parameters[:origin]
     @destination = parameters[:destination]
-    @food = parameters[:food]
+    @food_type = parameters[:food_type]
   end
 
   def full_response
@@ -34,7 +34,7 @@ class MunchiesIndexFacade
   def yelp_api
     parameters = { 
       location: @destination,
-      food_type: @food,
+      food_type: @food_type,
       epoch: arrival_epoch
     }
     @yelp_api ||= ApiService::Yelp.new(parameters)
