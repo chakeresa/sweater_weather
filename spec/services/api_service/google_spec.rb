@@ -33,7 +33,7 @@ describe ApiService::Google do
 
     stub_const('ENV', {'GOOGLE_MAPS_API_KEY' => 'blah'})
 
-    expect { service.geocoding_results }.to raise_error('Bad Google Maps API key')
+    expect { service.geocoding_results }.to raise_error('ApiService::Google error: The provided API key is invalid.')
   end
   
   it '#directions returns directions info from origin to destination' do
@@ -54,6 +54,6 @@ describe ApiService::Google do
     
     stub_const('ENV', {'GOOGLE_MAPS_API_KEY' => 'blah'})
 
-    expect { service.directions }.to raise_error('Bad Google Maps API key')
+    expect { service.directions }.to raise_error('ApiService::Google error: The provided API key is invalid.')
   end
 end

@@ -10,7 +10,7 @@ class ApiService::Google < ApiService::Base
   def geocoding_results
     uri_path = '/maps/api/geocode/json'
     location_hash = fetch_json_data(uri_path, address: @location_string)
-    raise 'Bad Google Maps API key' if location_hash[:error_message]
+    check_and_raise_error(location_hash)
     location_hash
   end
   
@@ -18,8 +18,7 @@ class ApiService::Google < ApiService::Base
     uri_path = '/maps/api/directions/json'
     parameters = { origin: @origin, destination: @destination }
     directions_hash = fetch_json_data(uri_path, parameters)
-    # TODO: change exception message be the actual error, similar for others
-    raise 'Bad Google Maps API key' if directions_hash[:error_message]
+    check_and_raise_error(directions_hash)
     directions_hash
   end
 
@@ -30,5 +29,10 @@ class ApiService::Google < ApiService::Base
       faraday.adapter Faraday.default_adapter
       faraday.params['key'] = ENV['GOOGLE_MAPS_API_KEY']
     end
+  end
+
+  def check_and_raise_error(response)
+    error_message = response[:error_message]
+    raise "#{self.class} error: #{error_message}" if error_message
   end
 end
