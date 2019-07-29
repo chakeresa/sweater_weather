@@ -42,7 +42,7 @@ describe "Login (Session Creation) Endpoint" do
       expect(response).to have_http_status(401)
 
       response_body = JSON.parse(response.body, symbolize_names: true)
-      expected_response = { error: "Email can't be blank" }
+      expected_response = { error: 'Incorrect username/password combination' }
       expect(response_body).to eq(expected_response)
     end
 
@@ -56,7 +56,7 @@ describe "Login (Session Creation) Endpoint" do
       expect(response).to have_http_status(401)
 
       response_body = JSON.parse(response.body, symbolize_names: true)
-      expected_response = { error: "Password can't be blank" }
+      expected_response = { error: 'Incorrect username/password combination' }
       expect(response_body).to eq(expected_response)
     end
   end

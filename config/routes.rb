@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'backgrounds', to: 'backgrounds#show'
       get 'munchies', to: 'munchies#index'
       resources :users, only: [:create]
+      resources :sessions, only: [:create]
     end
   end
 end
