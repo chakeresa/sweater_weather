@@ -6,10 +6,14 @@ class MunchiesIndexFacade
   end
 
   def full_response
-    {
-      meta: { location: destination_city_and_state },
-      data: { restaurants: restaurants }
-    }
+    if @input_error
+      { error: @input_error }
+    else
+      {
+        meta: { location: destination_city_and_state },
+        data: { restaurants: restaurants }
+      }
+    end
   end
   
   private
@@ -24,11 +28,13 @@ class MunchiesIndexFacade
   end
 
   def duration_in_seconds
+    @input_error = 'No route found' unless api_directions_hash[:routes].any?
+
     api_directions_hash[:routes].first[:legs].first[:duration][:value]
   end
 
   def arrival_epoch
-    (Time.now + duration_in_seconds / (60 * 60).hours).to_i
+    Time.now.to_i + duration_in_seconds
   end
 
   def yelp_api
@@ -41,7 +47,13 @@ class MunchiesIndexFacade
   end
   
   def api_restaurants_hash
-    @api_restaurants_hash ||= yelp_api.restaurants
+    begin
+      api_restaurants_hash ||= yelp_api.restaurants
+      # @api_restaurants_hash ||= yelp_api.restaurants
+    rescue StandardError => e
+      @input_error = e
+      { businesses: [] }
+    end
   end
 
   def restaurants
@@ -55,8 +67,12 @@ class MunchiesIndexFacade
 
   def destination_city_and_state
     first_restaurant = api_restaurants_hash[:businesses].first
-    city = first_restaurant[:location][:city]
-    state = first_restaurant[:location][:state]
-    { city: city, state: state }
+    if first_restaurant
+      city = first_restaurant[:location][:city]
+      state = first_restaurant[:location][:state]
+      { city: city, state: state }
+    else
+      @destination
+    end
   end
 end
