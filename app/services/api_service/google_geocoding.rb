@@ -7,7 +7,7 @@ class ApiService::GoogleGeocoding < ApiService::Base
 
   def geocoding_results
     uri_path = '/maps/api/geocode/json'
-    location_hash = fetch_data(uri_path, address: @location_string)
+    location_hash = fetch_json_data(uri_path, address: @location_string)
     raise 'Bad Google Maps API key' if location_hash[:error_message]
     location_hash
   end

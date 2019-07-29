@@ -8,7 +8,7 @@ class ApiService::DarkSky < ApiService::Base
 
   def forecast
     uri_path = "/forecast/#{ENV['DARK_SKY_API_KEY']}/#{@lat},#{@long}"
-    forecast_hash = fetch_data(uri_path)
+    forecast_hash = fetch_json_data(uri_path)
     raise 'Bad Dark Sky API key' if forecast_hash[:error]
     forecast_hash
   end
