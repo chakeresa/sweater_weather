@@ -1,11 +1,13 @@
 class MunchiesIndexFacade
   def initialize(parameters = {})
-    @start = parameters[:start]
-    @end = parameters[:end]
+    @origin = parameters[:origin]
+    @destination = parameters[:destination]
     @food = parameters[:food]
   end
 
   def full_response
+    # TODO
+    duration
   #   parameters = {
   #     api_location_hash: api_location_hash,
   #     forecast_hash: forecast_hash
@@ -16,35 +18,19 @@ class MunchiesIndexFacade
   #   }
   end
 
-  # def data
-  #   parameters = { forecast_hash: forecast_hash }
-  #   {
-  #     currently: Forecast::Current.new(parameters).data,
-  #     daily: Forecast::Daily.new(parameters).data.first(5),
-  #     hourly: Forecast::Hourly.new(parameters).data.first(8)
-  #   }
-  # end
+  def duration
+    api_directions_hash
+    require 'pry'; binding.pry
+  end
 
-  # private
+  private
 
-  # def google_geocoding_api
-  #   parameters = { location_string: @location_string }
-  #   @google_geocoding_api ||= ApiService::GoogleGeocoding.new(parameters)
-  # end
+  def google_geocoding_api
+    parameters = { origin: @origin, destination: @destination }
+    @google_geocoding_api ||= ApiService::GoogleGeocoding.new(parameters)
+  end
   
-  # def api_location_hash
-  #   @api_location_hash ||= google_geocoding_api.geocoding_results
-  # end
-
-  # def lat_lng_hash
-  #   @lat_lng_hash ||= api_location_hash[:results].first[:geometry][:location]
-  # end
-
-  # def dark_sky_api
-  #   @dark_sky_api ||= ApiService::DarkSky.new(lat_lng_hash)
-  # end
-
-  # def forecast_hash
-  #   @forecast_hash ||= dark_sky_api.forecast
-  # end
+  def api_directions_hash
+    @api_directions_hash ||= google_geocoding_api.directions
+  end
 end
