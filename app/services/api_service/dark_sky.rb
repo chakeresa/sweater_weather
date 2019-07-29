@@ -9,7 +9,7 @@ class ApiService::DarkSky < ApiService::Base
   def forecast
     uri_path = "/forecast/#{ENV['DARK_SKY_API_KEY']}/#{@lat},#{@long}"
     forecast_hash = fetch_json_data(uri_path)
-    raise 'Bad Dark Sky API key' if forecast_hash[:error]
+    check_and_raise_error(forecast_hash)
     forecast_hash
   end
 
@@ -20,5 +20,10 @@ class ApiService::DarkSky < ApiService::Base
       faraday.adapter Faraday.default_adapter
       faraday.params['exclude'] = 'minutely'
     end
+  end
+
+  def check_and_raise_error(response)
+    error_message = response[:error]
+    raise "#{self.class} error: #{error_message}" if error_message
   end
 end
