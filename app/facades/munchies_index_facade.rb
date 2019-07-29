@@ -43,7 +43,6 @@ class MunchiesIndexFacade
   def api_restaurants_hash
     begin
       api_restaurants_hash ||= yelp_api.restaurants
-      # @api_restaurants_hash ||= yelp_api.restaurants
     rescue
       { businesses: [] }
     end
