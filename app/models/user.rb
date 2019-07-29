@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  before_save { self.email = self.email.to_s.downcase }
   after_create :add_api_key
 
   def add_api_key
