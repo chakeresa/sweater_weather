@@ -16,7 +16,7 @@ class ApiService::Yelp < ApiService::Base
       open_at: @epoch
     }
     restaurants_hash = fetch_json_data(uri_path, search_parameters)
-    raise 'Bad Yelp API key' if restaurants_hash[:error]
+    check_and_raise_error(restaurants_hash)
     restaurants_hash
   end
 
@@ -27,5 +27,10 @@ class ApiService::Yelp < ApiService::Base
       faraday.adapter Faraday.default_adapter
       faraday.headers['Authorization'] = "Bearer #{ENV['YELP_API_KEY']}"
     end
+  end
+
+  def check_and_raise_error(response)
+    error_message = response[:error]
+    raise "#{self.class} error: #{error_message}" if error_message
   end
 end

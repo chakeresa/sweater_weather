@@ -43,6 +43,6 @@ describe ApiService::Yelp do
 
     stub_const('ENV', {'YELP_API_KEY' => 'blah'})
 
-    expect { service.restaurants }.to raise_error('Bad Yelp API key')
+    expect { service.restaurants }.to raise_error(RuntimeError)
   end
 end
