@@ -23,6 +23,7 @@ describe "Account Creation (User Registration) Endpoint" do
       response_body = JSON.parse(response.body, symbolize_names: true)
   
       expect(User.count).to eq(1)
+      expect(response_body[:api_key]).to_not be_nil
       expect(User.first.api_key).to eq(response_body[:api_key])
     end
   end
