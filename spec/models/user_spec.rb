@@ -13,4 +13,11 @@ RSpec.describe User, type: :model do
     expect(user1.api_key).to_not be_nil
     expect(user1.api_key).to_not eq(user2.api_key)
   end
+  
+  it 'automatically makes emails lowercase' do
+    email = "HelloBob"
+    user = create(:user, email: email)
+  
+    expect(user.email).to eq(email.downcase)
+  end
 end
