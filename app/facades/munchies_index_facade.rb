@@ -28,7 +28,7 @@ class MunchiesIndexFacade
   end
 
   def arrival_epoch
-    (Time.now + duration_in_seconds / (60 * 60).hours).to_i
+    Time.now.to_i + duration_in_seconds
   end
 
   def yelp_api
@@ -41,7 +41,12 @@ class MunchiesIndexFacade
   end
   
   def api_restaurants_hash
-    @api_restaurants_hash ||= yelp_api.restaurants
+    begin
+      api_restaurants_hash ||= yelp_api.restaurants
+      # @api_restaurants_hash ||= yelp_api.restaurants
+    rescue
+      { businesses: [] }
+    end
   end
 
   def restaurants
@@ -55,8 +60,12 @@ class MunchiesIndexFacade
 
   def destination_city_and_state
     first_restaurant = api_restaurants_hash[:businesses].first
-    city = first_restaurant[:location][:city]
-    state = first_restaurant[:location][:state]
-    { city: city, state: state }
+    if first_restaurant
+      city = first_restaurant[:location][:city]
+      state = first_restaurant[:location][:state]
+      { city: city, state: state }
+    else
+      @destination
+    end
   end
 end
