@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'forecast', to: 'forecasts#show'
       get 'backgrounds', to: 'backgrounds#show'
       get 'munchies', to: 'munchies#index'
+      resources :users, only: [:create]
     end
   end
 end
