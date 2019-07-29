@@ -1,8 +1,4 @@
-require 'spec_helper'
-require './app/services/api_service/base'
-require './app/services/api_service/dark_sky'
-require 'faraday'
-require './config/application'
+require 'rails_helper'
 
 describe ApiService::DarkSky do
   it 'exists' do
