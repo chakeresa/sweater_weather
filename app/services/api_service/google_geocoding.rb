@@ -1,7 +1,7 @@
-class GoogleGeocodingApi
+class ApiService::GoogleGeocoding < ApiService::Base
   attr_reader :location_string
 
-  def initialize(parameters =  {})
+  def initialize(parameters = {})
     @location_string = parameters[:location_string]
   end
 
@@ -19,10 +19,5 @@ class GoogleGeocodingApi
       faraday.adapter Faraday.default_adapter
       faraday.params['key'] = ENV['GOOGLE_MAPS_API_KEY']
     end
-  end
-
-  def fetch_data(uri_path, params = {})
-    response = conn.get uri_path, params
-    JSON.parse response.body, symbolize_names: true
   end
 end

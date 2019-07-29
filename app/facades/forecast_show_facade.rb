@@ -3,25 +3,46 @@ class ForecastShowFacade
     @location_string = location_string
   end
 
-  def formatted_location
-    location_hash[:results].first[:formatted_address]
+  def full_response
+    parameters = {
+      api_location_hash: api_location_hash,
+      forecast_hash: forecast_hash
+    }
+    {
+      meta: Forecast::Metadata.new(parameters).data,
+      data: data
+    }
   end
-  
+
+  def data
+    parameters = { forecast_hash: forecast_hash }
+    {
+      currently: Forecast::Current.new(parameters).data,
+      daily: Forecast::Daily.new(parameters).data.first(5),
+      hourly: Forecast::Hourly.new(parameters).data.first(8)
+    }
+  end
+
   private
-  
+
   def google_geocoding_api
     parameters = { location_string: @location_string }
-    @google_geocoding_api ||= GoogleGeocodingApi.new(parameters)
+    @google_geocoding_api ||= ApiService::GoogleGeocoding.new(parameters)
   end
   
-  def location_hash
-    @location_hash ||= google_geocoding_api.geocoding_results
+  def api_location_hash
+    @api_location_hash ||= google_geocoding_api.geocoding_results
   end
-  
-  def lat_long_hash
-    @lat_long_hash ||= location_hash[:results].first[:geometry][:location]
-    lat = @lat_long_hash[:lat]
-    long = @lat_long_hash[:lng]
-    require 'pry'; binding.pry
+
+  def lat_lng_hash
+    @lat_lng_hash ||= api_location_hash[:results].first[:geometry][:location]
+  end
+
+  def dark_sky_api
+    @dark_sky_api ||= ApiService::DarkSky.new(lat_lng_hash)
+  end
+
+  def forecast_hash
+    @forecast_hash ||= dark_sky_api.forecast
   end
 end
