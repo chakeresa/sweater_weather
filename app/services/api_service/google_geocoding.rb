@@ -22,7 +22,6 @@ class ApiService::GoogleGeocoding < ApiService::Base
     # TODO: change exception message be the actual error
     raise 'Bad Google Maps API key' if directions_hash[:error_message]
     directions_hash
-    require 'pry'; binding.pry
   end
 
   private
