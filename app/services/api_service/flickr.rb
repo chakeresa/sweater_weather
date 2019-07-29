@@ -35,7 +35,7 @@ class ApiService::Flickr < ApiService::Base
       text: @location_string,
       sort: 'relevance',
       content: 'relevance',
-      per_page: 5 # TODO: change to 1
+      per_page: 1
     }
     response = fetch_xml_data(uri_path, search_parameters)
     raise 'Bad Flickr API key' if bad_api_key?(response)

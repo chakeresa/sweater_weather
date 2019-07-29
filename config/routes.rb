@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'forecast', to: 'forecasts#show'
       get 'backgrounds', to: 'backgrounds#show'
+      get 'munchies', to: 'munchies#index'
       resources :users, only: [:create]
     end
   end

@@ -6,7 +6,8 @@ class Forecast::Daily < Forecast::Base
         low_temperature: api_data_for_day[:temperatureLow],
         summary: api_data_for_day[:summary],
         day_of_week: day_of_week(api_data_for_day[:time]),
-        type: api_data_for_day[:icon], # TODO
+        # TODO - delete type? not returned by the API for daily
+        type: api_data_for_day[:icon],
         icon: api_data_for_day[:icon],
         chance_of_precip: api_data_for_day[:precipProbability],
         precip_type: api_data_for_day[:precipType]
