@@ -6,14 +6,10 @@ class MunchiesIndexFacade
   end
 
   def full_response
-    if @input_error
-      { error: @input_error }
-    else
-      {
-        meta: { location: destination_city_and_state },
-        data: { restaurants: restaurants }
-      }
-    end
+    {
+      meta: { location: destination_city_and_state },
+      data: { restaurants: restaurants }
+    }
   end
   
   private
@@ -28,8 +24,6 @@ class MunchiesIndexFacade
   end
 
   def duration_in_seconds
-    @input_error = 'No route found' unless api_directions_hash[:routes].any?
-
     api_directions_hash[:routes].first[:legs].first[:duration][:value]
   end
 
@@ -50,8 +44,7 @@ class MunchiesIndexFacade
     begin
       api_restaurants_hash ||= yelp_api.restaurants
       # @api_restaurants_hash ||= yelp_api.restaurants
-    rescue StandardError => e
-      @input_error = e
+    rescue
       { businesses: [] }
     end
   end

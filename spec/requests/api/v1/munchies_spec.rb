@@ -65,8 +65,18 @@ describe "Munchies Endpoint" do
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       restaurants = json_response[:data][:restaurants]
-
+      
       expect(restaurants.first).to have_key(:name)
+    end
+    
+    it "doesn't error out if no route is found" do
+      get '/api/v1/munchies?start=denver,co&end=hawaii&food=coffee'
+      expect(response).to be_successful
+  
+      json_response = JSON.parse(response.body, symbolize_names: true)
+      restaurants = json_response[:data][:restaurants]
+
+      expect(restaurants).to eq([])
     end
   end
 end
