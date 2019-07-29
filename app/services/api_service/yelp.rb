@@ -15,9 +15,9 @@ class ApiService::Yelp < ApiService::Base
       categories: 'food',
       open_at: @epoch
     }
-    forecast_hash = fetch_json_data(uri_path, search_parameters)
-    raise 'Bad Yelp API key' if forecast_hash[:error]
-    forecast_hash
+    restaurants_hash = fetch_json_data(uri_path, search_parameters)
+    raise 'Bad Yelp API key' if restaurants_hash[:error]
+    restaurants_hash
   end
 
   private
