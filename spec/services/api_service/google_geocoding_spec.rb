@@ -1,8 +1,4 @@
-require 'spec_helper'
-require './app/services/api_service/base'
-require './app/services/api_service/google_geocoding'
-require 'faraday'
-require './config/application'
+require 'rails_helper'
 
 describe ApiService::GoogleGeocoding do
   it 'exists' do
