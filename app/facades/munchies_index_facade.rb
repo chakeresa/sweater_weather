@@ -7,7 +7,7 @@ class MunchiesIndexFacade
 
   def full_response
     {
-      meta: { location: @destination },
+      meta: { location: city_and_state },
       data: { restaurants: restaurants }
     }
   end
@@ -51,5 +51,12 @@ class MunchiesIndexFacade
         address: restaurant[:location][:display_address]
       }
     end
+  end
+
+  def city_and_state
+    first_restaurant = api_restaurants_hash[:businesses].first
+    city = first_restaurant[:location][:city]
+    state = first_restaurant[:location][:state]
+    {city: city, state: state}
   end
 end

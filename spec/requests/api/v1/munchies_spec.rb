@@ -9,10 +9,11 @@ describe "Munchies Endpoint" do
     expect(response).to be_successful
   end
 
-  it "returns the end city" do
+  it "returns the endpoint city & state" do
     meta = JSON.parse(response.body, symbolize_names: true)[:meta]
 
-    expect(meta).to have_key(:location)
+    expect(meta[:location]).to have_key(:city)
+    expect(meta[:location]).to have_key(:state)
   end
 
   it 'returns info for 3 restaurants that will be open upon arrival at the destination' do
