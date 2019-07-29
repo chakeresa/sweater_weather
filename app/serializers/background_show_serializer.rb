@@ -1,4 +1,4 @@
-class BackgroundShowFacade
+class BackgroundShowSerializer
   def initialize(location_string)
     @location_string = location_string
   end

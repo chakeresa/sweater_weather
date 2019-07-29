@@ -1,4 +1,4 @@
-class MunchiesIndexFacade
+class MunchiesIndexSerializer
   def initialize(parameters = {})
     @origin = parameters[:origin]
     @destination = parameters[:destination]
