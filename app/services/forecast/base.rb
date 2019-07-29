@@ -41,7 +41,7 @@ class Forecast::Base
   
   private
   
-    def datetime(epoch)
-      Time.at(epoch).in_time_zone(utc_offset)
-    end
+  def datetime(epoch)
+    Time.at(epoch).in_time_zone(utc_offset)
+  end
 end

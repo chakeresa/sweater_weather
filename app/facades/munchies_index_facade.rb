@@ -28,7 +28,7 @@ class MunchiesIndexFacade
   end
 
   def arrival_epoch
-    Time.now.to_i + duration_in_seconds
+    (Time.now + duration_in_seconds / (60 * 60).hours).to_i
   end
 
   def yelp_api
