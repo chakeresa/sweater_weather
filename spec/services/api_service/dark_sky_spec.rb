@@ -52,6 +52,6 @@ describe ApiService::DarkSky do
 
     stub_const('ENV', {'DARK_SKY_API_KEY' => 'blah'})
 
-    expect { service.forecast }.to raise_error('Bad Dark Sky API key')
+    expect { service.forecast }.to raise_error('ApiService::DarkSky error: permission denied')
   end
 end
