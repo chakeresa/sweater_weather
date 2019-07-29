@@ -19,7 +19,7 @@ class ApiService::GoogleGeocoding < ApiService::Base
     uri_path = '/maps/api/directions/json'
     parameters = { origin: @origin, destination: @destination }
     directions_hash = fetch_json_data(uri_path, parameters)
-    # TODO: change exception message be the actual error
+    # TODO: change exception message be the actual error, similar for others
     raise 'Bad Google Maps API key' if directions_hash[:error_message]
     directions_hash
   end
