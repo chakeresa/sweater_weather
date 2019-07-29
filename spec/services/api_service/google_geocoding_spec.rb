@@ -5,10 +5,16 @@ describe ApiService::GoogleGeocoding do
     expect(subject).to be_a(ApiService::GoogleGeocoding)
   end
 
-  it 'initializes with location_string' do
+  it 'initializes with location_string, origin, and/or destination' do
     location_string = 'denver, co'
-    service = ApiService::GoogleGeocoding.new({ location_string: location_string })
-    expect(service.location_string).to eq(location_string)
+    service1 = ApiService::GoogleGeocoding.new({ location_string: location_string })
+    expect(service1.location_string).to eq(location_string)
+
+    origin = 'denver, co'
+    destination = 'pueblo, co'
+    service2 = ApiService::GoogleGeocoding.new({ origin: origin, destination: destination })
+    expect(service2.origin).to eq(origin)
+    expect(service2.destination).to eq(destination)
   end
   
   it '#geocoding_results returns formatted location and lat/long' do
