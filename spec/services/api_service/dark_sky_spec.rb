@@ -38,7 +38,9 @@ describe ApiService::DarkSky do
     expect(result[:daily][:data].first).to have_key(:time)
     expect(result[:daily][:data].first).to have_key(:icon)
     expect(result[:daily][:data].first).to have_key(:summary)
-    expect(result[:daily][:data].first).to have_key(:precipType)
+    # TODO: delete precipType from here & facade?
+    # The API is not including it on Monday
+    # expect(result[:daily][:data].first).to have_key(:precipType)
     expect(result[:daily][:data].first).to have_key(:precipProbability)
     expect(result[:daily][:data].first).to have_key(:temperatureHigh)
     expect(result[:daily][:data].first).to have_key(:temperatureLow)
