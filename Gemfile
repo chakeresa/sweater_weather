@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 
   # gem 'vcr'
   # gem 'webmock'
