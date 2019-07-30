@@ -1,4 +1,6 @@
 class ForecastShowFacade
+  include Forecastable
+
   def initialize(location_string)
     @location_string = location_string
   end
@@ -32,24 +34,7 @@ class ForecastShowFacade
     { forecast_hash: forecast_hash }
   end
 
-  def google_api
-    parameters = { location_string: @location_string }
-    @google_api ||= ApiService::Google.new(parameters)
-  end
-  
-  def api_location_hash
-    @api_location_hash ||= google_api.geocoding_results
-  end
-
-  def lat_lng_hash
-    @lat_lng_hash ||= api_location_hash[:results].first[:geometry][:location]
-  end
-
-  def dark_sky_api
-    @dark_sky_api ||= ApiService::DarkSky.new(lat_lng_hash)
-  end
-
-  def forecast_hash
-    @forecast_hash ||= dark_sky_api.forecast
+  def forecast_location
+    @location_string
   end
 end

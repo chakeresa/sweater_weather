@@ -1,5 +1,6 @@
 class RoadTripsCreateFacade
   include Directionable
+  include Forecastable
 
   def initialize(parameters)
     @origin = parameters[:origin]
@@ -20,8 +21,7 @@ class RoadTripsCreateFacade
 
   private
 
-  # def flickr_api
-  #   parameters = { location_string: @location_string }
-  #   @flickr_api ||= ApiService::Flickr.new(parameters)
-  # end
+  def forecast_location
+    @destination
+  end
 end
