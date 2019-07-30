@@ -21,24 +21,28 @@ describe "Road Trip Endpoint" do
     end
     
     it 'gets back a good response' do
-      post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
-      expect(response).to have_http_status(200)
+      VCR.use_cassette('road_trip_endpoint/good_response', record: :new_episodes) do
+        post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
+        expect(response).to have_http_status(200)
+      end
     end
     
     it 'response includes the travel time + forecast at the arrival time/location' do
-      # If the trip takes x minutes, deliver a forecast (temperature and summary) x minutes in the future, and the estimated travel time.
-      post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
-      data = JSON.parse(response.body, symbolize_names: true)[:data]
-  
-      expect(data).to have_key(:id)
-      expect(data).to have_key(:type)
+      VCR.use_cassette('road_trip_endpoint/travel_time_and_forecast', record: :new_episodes) do
+        # If the trip takes x minutes, deliver a forecast (temperature and summary) x minutes in the future, and the estimated travel time.
+        post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
+        data = JSON.parse(response.body, symbolize_names: true)[:data]
+    
+        expect(data).to have_key(:id)
+        expect(data).to have_key(:type)
 
-      attributes = data[:attributes]
-      
-      expect(attributes[:forecast]).to have_key(:temperature)
-      expect(attributes[:forecast]).to have_key(:summary)
+        attributes = data[:attributes]
 
-      expect(attributes).to have_key(:travel_time_seconds)
+        expect(attributes[:forecast]).to have_key(:temperature)
+        expect(attributes[:forecast]).to have_key(:summary)
+
+        expect(attributes).to have_key(:travel_time_seconds)
+      end
     end
   end
 

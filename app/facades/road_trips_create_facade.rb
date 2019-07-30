@@ -1,4 +1,6 @@
 class RoadTripsCreateFacade
+  include Directionable
+
   def initialize(parameters)
     @origin = parameters[:origin]
     @destination = parameters[:destination]
@@ -13,7 +15,7 @@ class RoadTripsCreateFacade
   end
 
   def duration
-    # TODO
+    duration_in_seconds
   end
 
   private
