@@ -9,6 +9,7 @@ class ApiService::Google < ApiService::Base
 
   def geocoding_results
     uri_path = '/maps/api/geocode/json'
+    Rails.logger.debug "Making Google geocoding API call (#{@location_string})"
     location_hash = fetch_json_data(uri_path, address: @location_string)
     check_and_raise_error(location_hash)
     location_hash
@@ -17,6 +18,7 @@ class ApiService::Google < ApiService::Base
   def directions
     uri_path = '/maps/api/directions/json'
     parameters = { origin: @origin, destination: @destination }
+    Rails.logger.debug "Making Google directions API call (#{@origin}-#{@destination})"
     directions_hash = fetch_json_data(uri_path, parameters)
     check_and_raise_error(directions_hash)
     directions_hash

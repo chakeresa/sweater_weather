@@ -11,7 +11,7 @@ class ApiService::Yelp < ApiService::Base
     uri_path = '/v3/businesses/search'
     restaurants_hash = Rails.cache.fetch("restaurants/#{caching_params}", expires_in: 5.minutes) do
       Rails.logger.debug "Making Yelp restaurants API call (#{caching_params})"
-      restaurants_hash = fetch_json_data(uri_path, restaurant_search_params)
+      fetch_json_data(uri_path, restaurant_search_params)
     end
     check_and_raise_error(restaurants_hash)
     restaurants_hash

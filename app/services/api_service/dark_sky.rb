@@ -9,6 +9,7 @@ class ApiService::DarkSky < ApiService::Base
   def forecast
     uri_path = "/forecast/#{ENV['DARK_SKY_API_KEY']}/#{@lat},#{@long}"
     forecast_hash = fetch_json_data(uri_path)
+    Rails.logger.debug "Making Dark Sky forecast API call (#{@lat}-#{@long})"
     check_and_raise_error(forecast_hash)
     forecast_hash
   end
