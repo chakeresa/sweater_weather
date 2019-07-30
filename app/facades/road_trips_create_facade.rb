@@ -8,11 +8,11 @@ class RoadTripsCreateFacade
   end
 
   def summary
-    # flickr_api.image_url
+    forecast_at_destination[:summary]
   end
-
+  
   def temperature
-    # TODO
+    forecast_at_destination[:temperature]
   end
 
   def duration
@@ -23,5 +23,9 @@ class RoadTripsCreateFacade
 
   def forecast_location
     @destination
+  end
+
+  def forecast_at_destination
+    forecast_hash(arrival_epoch)[:currently]
   end
 end
