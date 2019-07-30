@@ -1,7 +1,7 @@
 class Api::V1::MunchiesController < ApplicationController
   def index
     facade = MunchiesIndexFacade.new(search_parameters)
-    render json: MunchiesIndexSerializer.new(facade).full_response
+    render json: RestaurantsSerializer.new(facade).full_response
   end
   
   def search_parameters

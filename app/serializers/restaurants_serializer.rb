@@ -1,4 +1,4 @@
-class MunchiesIndexSerializer
+class RestaurantsSerializer
   def initialize(facade)
     @facade = facade
   end

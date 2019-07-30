@@ -1,4 +1,4 @@
-class BackgroundShowSerializer
+class ImageUrlSerializer
   def initialize(facade)
     @facade = facade
   end

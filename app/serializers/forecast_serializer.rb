@@ -1,4 +1,4 @@
-class ForecastShowSerializer
+class ForecastSerializer
   def initialize(facade)
     @facade = facade
   end
