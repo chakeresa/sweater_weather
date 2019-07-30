@@ -34,32 +34,35 @@ describe "Road Trip Endpoint" do
   end
 
   describe 'bad requests' do
-    # it "missing email" do
-    #   request_body = {
-    #     "password": "password"
-    #   }
+    it 'missing api_key' do
+      request_body = {
+        'origin': 'Denver,CO', 
+        'destination': 'Pueblo,CO'
+      }
 
-    #   post '/api/v1/sessions', params: request_body.to_json, headers: @headers
+      post '/api/v1/road_trip', params: request_body.to_json, headers: @headers
 
-    #   expect(response).to have_http_status(401)
+      expect(response).to have_http_status(401)
 
-    #   response_body = JSON.parse(response.body, symbolize_names: true)
-    #   expected_response = { error: 'Incorrect username/password combination' }
-    #   expect(response_body).to eq(expected_response)
-    # end
-
-    # it "missing password" do
-    #   request_body = {
-    #     "email": "whatever@example.com"
-    #   }
-
-    #   post '/api/v1/sessions', params: request_body.to_json, headers: @headers
-
-    #   expect(response).to have_http_status(401)
-
-    #   response_body = JSON.parse(response.body, symbolize_names: true)
-    #   expected_response = { error: 'Incorrect username/password combination' }
-    #   expect(response_body).to eq(expected_response)
-    # end
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      expected_response = { error: 'API key must be provided' }
+      expect(response_body).to eq(expected_response)
+    end
+    
+    it 'invalid api_key' do
+      request_body = {
+        'origin': 'Denver,CO', 
+        'destination': 'Pueblo,CO',
+        'api_key': 'jgn983hy48thw9begh98h4539h4'
+      }
+  
+      post '/api/v1/road_trip', params: request_body.to_json, headers: @headers
+  
+      expect(response).to have_http_status(401)
+  
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      expected_response = { error: 'Invalid API key' }
+      expect(response_body).to eq(expected_response)
+    end
   end
 end
