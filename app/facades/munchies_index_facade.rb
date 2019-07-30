@@ -1,4 +1,6 @@
 class MunchiesIndexFacade
+  include Directionable
+  
   def initialize(parameters = {})
     @origin = parameters[:origin]
     @destination = parameters[:destination]
@@ -23,23 +25,6 @@ class MunchiesIndexFacade
   end
   
   private
-  
-  def google_api
-    parameters = { origin: @origin, destination: @destination }
-    @google_api ||= ApiService::Google.new(parameters)
-  end
-  
-  def api_directions_hash
-    @api_directions_hash ||= google_api.directions
-  end
-
-  def duration_in_seconds
-    api_directions_hash[:routes].first[:legs].first[:duration][:value]
-  end
-
-  def arrival_epoch
-    Time.now.to_i + duration_in_seconds
-  end
 
   def yelp_api
     parameters = { 

@@ -6,15 +6,20 @@ class ApiService::DarkSky < ApiService::Base
     @long = parameters[:lng]
   end
 
-  def forecast
-    uri_path = "/forecast/#{ENV['DARK_SKY_API_KEY']}/#{@lat},#{@long}"
-    forecast_hash = fetch_json_data(uri_path)
-    Rails.logger.debug "Making Dark Sky forecast API call (#{@lat}-#{@long})"
+  def forecast(epoch = nil)
+    forecast_hash = fetch_json_data(uri_path(epoch))
+    Rails.logger.debug "Making Dark Sky forecast API call (#{@lat}-#{@long}-#{epoch})"
     check_and_raise_error(forecast_hash)
     forecast_hash
   end
 
   private
+
+  def uri_path(epoch = nil)
+    path = "/forecast/#{ENV['DARK_SKY_API_KEY']}/#{@lat},#{@long}"
+    path << ",#{epoch}" if epoch
+    path
+  end
 
   def conn
     @conn ||= Faraday.new(:url => 'https://api.darksky.net') do |faraday|
