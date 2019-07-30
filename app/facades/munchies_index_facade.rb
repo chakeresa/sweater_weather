@@ -1,18 +1,26 @@
 class MunchiesIndexFacade
-  # TODO: make separate serializer that makes the final hash.
-  # OK for the facade to do the logic.
-
   def initialize(parameters = {})
     @origin = parameters[:origin]
     @destination = parameters[:destination]
     @food_type = parameters[:food_type]
   end
-
-  def full_response
-    {
-      meta: { location: destination_city_and_state },
-      data: { restaurants: restaurants }
-    }
+  
+  def restaurants
+    api_restaurants_hash[:businesses].first(3).map do |restaurant|
+      # TODO: make restaurant objects
+      restaurant
+    end
+  end
+  
+  def destination_city_and_state
+    first_restaurant = api_restaurants_hash[:businesses].first
+    if first_restaurant
+      city = first_restaurant[:location][:city]
+      state = first_restaurant[:location][:state]
+      { city: city, state: state }
+    else
+      @destination
+    end
   end
   
   private
@@ -48,27 +56,6 @@ class MunchiesIndexFacade
       api_restaurants_hash ||= yelp_api.restaurants
     rescue
       { businesses: [] }
-    end
-  end
-
-  def restaurants
-    api_restaurants_hash[:businesses].first(3).map do |restaurant|
-      # TODO: make restaurant objects
-      {
-        name: restaurant[:name],
-        address: restaurant[:location][:display_address]
-      }
-    end
-  end
-
-  def destination_city_and_state
-    first_restaurant = api_restaurants_hash[:businesses].first
-    if first_restaurant
-      city = first_restaurant[:location][:city]
-      state = first_restaurant[:location][:state]
-      { city: city, state: state }
-    else
-      @destination
     end
   end
 end
