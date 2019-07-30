@@ -20,17 +20,26 @@ describe "Road Trip Endpoint" do
       }
     end
     
-    it "gets back a good response" do
+    it 'gets back a good response' do
       post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
       expect(response).to have_http_status(200)
     end
+    
+    it 'response includes the travel time + forecast at the arrival time/location' do
+      # If the trip takes x minutes, deliver a forecast (temperature and summary) x minutes in the future, and the estimated travel time.
+      post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
+      data = JSON.parse(response.body, symbolize_names: true)[:data]
   
-    # it "response includes the api key for the logged-in user" do
-    #   response_body = JSON.parse(response.body, symbolize_names: true)
-  
-    #   expect(response_body[:api_key]).to_not be_nil
-    #   expect(@user.api_key).to eq(response_body[:api_key])
-    # end
+      expect(data).to have_key(:id)
+      expect(data).to have_key(:type)
+
+      attributes = data[:attributes]
+      
+      expect(attributes[:forecast]).to have_key(:temperature)
+      expect(attributes[:forecast]).to have_key(:summary)
+
+      expect(attributes).to have_key(:travel_time_seconds)
+    end
   end
 
   describe 'bad requests' do
