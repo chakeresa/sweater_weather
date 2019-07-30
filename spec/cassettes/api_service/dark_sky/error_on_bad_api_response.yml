@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.darksky.net/forecast/<DARK_SKY_API_KEY>/37.8267,-122.4233?exclude=minutely
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Date:
+      - Tue, 30 Jul 2019 16:53:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store
+      X-Response-Time:
+      - 0.223ms
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: '{"code":403,"error":"permission denied"}'
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:53:47 GMT
+recorded_with: VCR 5.0.0

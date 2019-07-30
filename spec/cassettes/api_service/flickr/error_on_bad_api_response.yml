@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,%20co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '136'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:54:59 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 df6db650c3d807e1387df2219ffb8414.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - Zc_NSTU_aen9f8pongKShViJMd6G4MthY54ZEfdxUMgajcc6Mm6ocA==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"fail\">\n\t<err
+        code=\"100\" msg=\"Invalid API Key (Key has invalid format)\" />\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:54:59 GMT
+recorded_with: VCR 5.0.0

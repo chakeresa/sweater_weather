@@ -1,0 +1,207 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,%20co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:54:57 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 24b7d1ff4a37cb730e9cb45742c6bf9a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - ddNc3b0TQpT1W0A6qi1_KzG3v2hBXW26sDCpdtjPOUXYL5Ed3raUCA==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"2369\" perpage=\"1\" total=\"2369\">\n\t<photo id=\"16262388280\"
+        owner=\"7156765@N05\" secret=\"dd4edfa9a4\" server=\"7314\" farm=\"8\" title=\"Denver
+        Colorado ~ Masonic Temple Building ~ Historic\" ispublic=\"1\" isfriend=\"0\"
+        isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:54:58 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,%20co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:54:58 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6858de87a9a441b83cd7cbdcd1cf2b40.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - 9Rw9yKiGL2ptjcewcAQP5j3MPQZUXkDrbVlFeVBxsE_bFwM9Uim3eA==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"2369\" perpage=\"1\" total=\"2369\">\n\t<photo id=\"16262388280\"
+        owner=\"7156765@N05\" secret=\"dd4edfa9a4\" server=\"7314\" farm=\"8\" title=\"Denver
+        Colorado ~ Masonic Temple Building ~ Historic\" ispublic=\"1\" isfriend=\"0\"
+        isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:54:58 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,%20co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:54:58 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 bcf64c48b9c8b91e813eb6d256fda774.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - TrSvVdPBiSMKcUoRNaj6twCneJMZVg2Wc568632ruonad4pTs-kD6Q==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"2369\" perpage=\"1\" total=\"2369\">\n\t<photo id=\"16262388280\"
+        owner=\"7156765@N05\" secret=\"dd4edfa9a4\" server=\"7314\" farm=\"8\" title=\"Denver
+        Colorado ~ Masonic Temple Building ~ Historic\" ispublic=\"1\" isfriend=\"0\"
+        isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:54:58 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,%20co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:54:58 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 eba6a3350abca3f534c3b54e45e13cd2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - 3Yl11BKm5_VGSbhvczK_7TolLTdOOCjHHFwfP64YJkKj6RctkcUG1Q==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"2369\" perpage=\"1\" total=\"2369\">\n\t<photo id=\"16262388280\"
+        owner=\"7156765@N05\" secret=\"dd4edfa9a4\" server=\"7314\" farm=\"8\" title=\"Denver
+        Colorado ~ Masonic Temple Building ~ Historic\" ispublic=\"1\" isfriend=\"0\"
+        isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:54:58 GMT
+recorded_with: VCR 5.0.0
