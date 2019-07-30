@@ -1,4 +1,7 @@
 class MunchiesIndexSerializer
+  # TODO: make separate serializer that makes the final hash.
+  # OK for the facade to do the logic.
+
   def initialize(parameters = {})
     @origin = parameters[:origin]
     @destination = parameters[:destination]
@@ -50,6 +53,7 @@ class MunchiesIndexSerializer
 
   def restaurants
     api_restaurants_hash[:businesses].first(3).map do |restaurant|
+      # TODO: make restaurant objects
       {
         name: restaurant[:name],
         address: restaurant[:location][:display_address]
