@@ -9,6 +9,9 @@ describe "Road Trip Endpoint" do
       'CONTENT_TYPE' => 'application/json',
       'ACCEPT' => 'application/json'
     }
+
+    mock_time = Time.parse('2019-07-30 11:45:00 -0600')
+    allow(Time).to receive(:now).and_return(mock_time)
   end
 
   describe 'good request' do
@@ -22,6 +25,7 @@ describe "Road Trip Endpoint" do
     
     it 'gets back a good response' do
       VCR.use_cassette('road_trip_endpoint/good_response', record: :new_episodes) do
+        # TODO: stub time
         post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
         expect(response).to have_http_status(200)
       end
@@ -29,7 +33,7 @@ describe "Road Trip Endpoint" do
     
     it 'response includes the travel time + forecast at the arrival time/location' do
       VCR.use_cassette('road_trip_endpoint/travel_time_and_forecast', record: :new_episodes) do
-        # If the trip takes x minutes, deliver a forecast (temperature and summary) x minutes in the future, and the estimated travel time.
+        # TODO: stub time
         post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
         data = JSON.parse(response.body, symbolize_names: true)[:data]
     
