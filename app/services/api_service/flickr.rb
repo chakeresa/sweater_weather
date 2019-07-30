@@ -28,8 +28,21 @@ class ApiService::Flickr < ApiService::Base
   end
   
   def image_data
+    return @image_data if @image_data
+
     uri_path = '/services/rest'
-    search_parameters = {
+    Rails.logger.debug "Making Flickr image search API call (#{@location_string})"
+    response = fetch_xml_data(uri_path, image_search_params)
+    raise 'Bad Flickr API key' if bad_api_key?(response)
+    @image_data = response.at_xpath('//rsp/photos/photo')
+  end
+  
+  def bad_api_key?(response)
+    response.at_xpath('//rsp').attributes['stat'].value != 'ok'
+  end
+  
+  def image_search_params
+    {
       method: 'flickr.photos.search',
       tags: 'downtown',
       text: @location_string,
@@ -37,12 +50,5 @@ class ApiService::Flickr < ApiService::Base
       content: 'relevance',
       per_page: 1
     }
-    response = fetch_xml_data(uri_path, search_parameters)
-    raise 'Bad Flickr API key' if bad_api_key?(response)
-    @image_data ||= response.at_xpath('//rsp/photos/photo')
-  end
-
-  def bad_api_key?(response)
-    response.at_xpath('//rsp').attributes['stat'].value != 'ok'
   end
 end
