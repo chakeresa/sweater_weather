@@ -1,0 +1,203 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '255'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:40:48 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 b7b0f8336ca1aeda5232ea917eea0f7c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - nUhKTDFb_QoGxl1m2Im5mXtva9paq4RgsPXELe_uvJ0FB2MP38H3Kg==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"107\" perpage=\"1\" total=\"107\">\n\t<photo id=\"3467379196\"
+        owner=\"75081971@N00\" secret=\"5e20d8b818\" server=\"3621\" farm=\"4\" title=\"INVESCOFIELD_URBAN
+        LANDSCAPE_GREGTHOW\" ispublic=\"1\" isfriend=\"0\" isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:40:48 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '255'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:40:49 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 3264203c671c919daf7b560027a8e363.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - dD1fob_jc5zZnUNNde9omwQL42rtqKHYkhDff3CXK38vmjSJuAkwdQ==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"107\" perpage=\"1\" total=\"107\">\n\t<photo id=\"3467379196\"
+        owner=\"75081971@N00\" secret=\"5e20d8b818\" server=\"3621\" farm=\"4\" title=\"INVESCOFIELD_URBAN
+        LANDSCAPE_GREGTHOW\" ispublic=\"1\" isfriend=\"0\" isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:40:49 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '255'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:40:49 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6da7dac3c22e3b912e56a60909d019f2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - q--vqHpKGotPVuqOMhFOjKT1Gzt0edK1xfMANMe6fNnrPzYRhst9hg==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"107\" perpage=\"1\" total=\"107\">\n\t<photo id=\"3467379196\"
+        owner=\"75081971@N00\" secret=\"5e20d8b818\" server=\"3621\" farm=\"4\" title=\"INVESCOFIELD_URBAN
+        LANDSCAPE_GREGTHOW\" ispublic=\"1\" isfriend=\"0\" isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:40:49 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content=relevance&method=flickr.photos.search&per_page=1&sort=relevance&tags=downtown&text=denver,co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '255'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 30 Jul 2019 16:40:49 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 fa2254c03129ab031bcce738a88ad77e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - LZjLhQ3-UjL06srB2XodxW3Ut8vL6PH9m6shbXNq_IvjjzYi5dymUg==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"107\" perpage=\"1\" total=\"107\">\n\t<photo id=\"3467379196\"
+        owner=\"75081971@N00\" secret=\"5e20d8b818\" server=\"3621\" farm=\"4\" title=\"INVESCOFIELD_URBAN
+        LANDSCAPE_GREGTHOW\" ispublic=\"1\" isfriend=\"0\" isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:40:49 GMT
+recorded_with: VCR 5.0.0

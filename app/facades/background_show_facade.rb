@@ -1,14 +1,10 @@
-class BackgroundShowSerializer
+class BackgroundShowFacade
   def initialize(location_string)
     @location_string = location_string
   end
 
-  def full_response
-    {
-      data: {
-        url: flickr_api.image_url
-      }
-    }
+  def image_url
+    flickr_api.image_url
   end
 
   private

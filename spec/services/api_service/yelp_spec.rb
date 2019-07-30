@@ -19,30 +19,34 @@ describe ApiService::Yelp do
   end
   
   it '#restaurants returns data for many restaurants' do
-    parameters = { 
-      location: 'pueblo, co',
-      food_type: 'chinese',
-      epoch: 1564421959
-    }
-    service = ApiService::Yelp.new(parameters)
-    result = service.restaurants
-    
-    expect(result[:businesses]).to be_an(Array)
-    expect(result[:businesses].count).to be >= 3
-    expect(result[:businesses].first).to have_key(:name)
-    expect(result[:businesses].first[:location]).to have_key(:display_address)
+    VCR.use_cassette('api_service/yelp/restaurants', record: :new_episodes) do
+      parameters = { 
+        location: 'pueblo, co',
+        food_type: 'chinese',
+        epoch: 1564421959
+      }
+      service = ApiService::Yelp.new(parameters)
+      result = service.restaurants
+      
+      expect(result[:businesses]).to be_an(Array)
+      expect(result[:businesses].count).to be >= 3
+      expect(result[:businesses].first).to have_key(:name)
+      expect(result[:businesses].first[:location]).to have_key(:display_address)
+    end
   end
   
   it '#restaurants raises an error if the API response is bad' do
-    parameters = { 
-      location: 'pueblo, co',
-      food_type: 'chinese',
-      epoch: 1564421959
-    }
-    service = ApiService::Yelp.new(parameters)
+    VCR.use_cassette('api_service/yelp/error_on_bad_api_response', record: :new_episodes) do
+      parameters = { 
+        location: 'pueblo, co',
+        food_type: 'chinese',
+        epoch: 1564421959
+      }
+      service = ApiService::Yelp.new(parameters)
 
-    stub_const('ENV', {'YELP_API_KEY' => 'blah'})
+      stub_const('ENV', {'YELP_API_KEY' => 'blah'})
 
-    expect { service.restaurants }.to raise_error(RuntimeError)
+      expect { service.restaurants }.to raise_error(RuntimeError)
+    end
   end
 end

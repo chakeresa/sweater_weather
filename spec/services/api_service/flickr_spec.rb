@@ -12,17 +12,21 @@ describe ApiService::Flickr do
   end
   
   it '#image_url returns the url for an image of the location' do
-    location_string = 'denver, co'
-    service = ApiService::Flickr.new({ location_string: location_string })
-    
-    expect(service.image_url).to eq('https://farm8.staticflickr.com/7314/16262388280_dd4edfa9a4.jpg')
+    VCR.use_cassette('api_service/flickr/image_url', record: :new_episodes) do
+      location_string = 'denver, co'
+      service = ApiService::Flickr.new({ location_string: location_string })
+      
+      expect(service.image_url).to eq('https://farm8.staticflickr.com/7314/16262388280_dd4edfa9a4.jpg')
+    end
   end
   
   it '#image_url raises an error if the API response is bad' do
-    service = ApiService::Flickr.new({ location_string: 'denver, co' })
+    VCR.use_cassette('api_service/flickr/error_on_bad_api_response', record: :new_episodes) do
+      service = ApiService::Flickr.new({ location_string: 'denver, co' })
 
-    stub_const('ENV', {'FLICKR_API_KEY' => 'blah'})
+      stub_const('ENV', {'FLICKR_API_KEY' => 'blah'})
 
-    expect { service.image_url }.to raise_error('Bad Flickr API key')
+      expect { service.image_url }.to raise_error('Bad Flickr API key')
+    end
   end
 end

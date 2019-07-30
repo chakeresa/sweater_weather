@@ -1,0 +1,125 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?categories=food&location=pueblo,%20co&open_at=1564421959&term=chinese
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <YELP_API_KEY>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json
+      Ratelimit-Dailylimit:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4877'
+      Ratelimit-Resettime:
+      - '2019-07-31T00:00:00+00:00'
+      X-Zipkin-Id:
+      - 244d7019da84edb3
+      X-B3-Sampled:
+      - '0'
+      X-Proxied:
+      - 10-64-146-52-uswest1bprod
+      Transfer-Encoding:
+      - chunked
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 30 Jul 2019 16:58:26 GMT
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-den19649-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"businesses": [{"id": "3MONRi6Bh5gO1s_4nCaMYQ", "alias": "noodles-and-company-pueblo",
+        "name": "Noodles & Company", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/uS0gcUp6xCmLt5YlhZ5ODQ/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/noodles-and-company-pueblo?adjust_creative=<YELP_CLIENT_ID>&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=<YELP_CLIENT_ID>",
+        "review_count": 28, "categories": [{"alias": "noodles", "title": "Noodles"},
+        {"alias": "salad", "title": "Salad"}, {"alias": "pastashops", "title": "Pasta
+        Shops"}], "rating": 3.5, "coordinates": {"latitude": 38.3085380973858, "longitude":
+        -104.61941242218}, "transactions": [], "price": "$", "location": {"address1":
+        "825 W US Hwy 50", "address2": "", "address3": "", "city": "Pueblo", "zip_code":
+        "81008", "country": "US", "state": "CO", "display_address": ["825 W US Hwy
+        50", "Pueblo, CO 81008"]}, "phone": "+17195441539", "display_phone": "(719)
+        544-1539", "distance": 5846.41953186027}, {"id": "c7zEc16iJa4_hoNLkhts8w",
+        "alias": "yellow-mountain-tea-house-colorado-springs", "name": "Yellow Mountain
+        Tea House", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/XRUjvww-zh8qCoPx4rh38Q/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/yellow-mountain-tea-house-colorado-springs?adjust_creative=<YELP_CLIENT_ID>&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=<YELP_CLIENT_ID>",
+        "review_count": 171, "categories": [{"alias": "tea", "title": "Tea Rooms"},
+        {"alias": "dimsum", "title": "Dim Sum"}], "rating": 4.5, "coordinates": {"latitude":
+        38.8486853, "longitude": -104.864644}, "transactions": [], "price": "$", "location":
+        {"address1": "2616 W Colorado Ave", "address2": "Ste 21", "address3": "",
+        "city": "Colorado Springs", "zip_code": "80904", "country": "US", "state":
+        "CO", "display_address": ["2616 W Colorado Ave", "Ste 21", "Colorado Springs,
+        CO 80904"]}, "phone": "+17192478487", "display_phone": "(719) 247-8487", "distance":
+        69115.13234470016}, {"id": "cuA9kMYQz82i2GeO49JuTA", "alias": "thai-guy-colorado-springs",
+        "name": "Thai Guy", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/oFCau3rBrEYlSatkHok4zA/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/thai-guy-colorado-springs?adjust_creative=<YELP_CLIENT_ID>&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=<YELP_CLIENT_ID>",
+        "review_count": 67, "categories": [{"alias": "thai", "title": "Thai"}, {"alias":
+        "desserts", "title": "Desserts"}, {"alias": "noodles", "title": "Noodles"}],
+        "rating": 4.5, "coordinates": {"latitude": 38.8388351, "longitude": -104.7001631},
+        "transactions": [], "price": "$", "location": {"address1": "6821 Space Village
+        Ave", "address2": "", "address3": "", "city": "Colorado Springs", "zip_code":
+        "80915", "country": "US", "state": "CO", "display_address": ["6821 Space Village
+        Ave", "Colorado Springs, CO 80915"]}, "phone": "+17195738054", "display_phone":
+        "(719) 573-8054", "distance": 64201.32817443002}, {"id": "IYigjWACIsL0Stf8aRo7dQ",
+        "alias": "noodles-and-company-fountain", "name": "Noodles & Company", "image_url":
+        "https://s3-media4.fl.yelpcdn.com/bphoto/0lXiGryesVVtlgBbqOJO7w/o.jpg", "is_closed":
+        false, "url": "https://www.yelp.com/biz/noodles-and-company-fountain?adjust_creative=<YELP_CLIENT_ID>&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=<YELP_CLIENT_ID>",
+        "review_count": 52, "categories": [{"alias": "noodles", "title": "Noodles"},
+        {"alias": "salad", "title": "Salad"}, {"alias": "pastashops", "title": "Pasta
+        Shops"}], "rating": 3.0, "coordinates": {"latitude": 38.7184623417714, "longitude":
+        -104.700162949628}, "transactions": [], "price": "$", "location": {"address1":
+        "6825 Mesa Ridge Pkwy", "address2": "", "address3": "", "city": "Fountain",
+        "zip_code": "80817", "country": "US", "state": "CO", "display_address": ["6825
+        Mesa Ridge Pkwy", "Fountain, CO 80817"]}, "phone": "+17193823287", "display_phone":
+        "(719) 382-3287", "distance": 51034.83276143881}, {"id": "HCq1SP07OTLGh8J_UN74vw",
+        "alias": "noodles-and-company-colorado-springs-2", "name": "Noodles & Company",
+        "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/z8LWx2nNv_7wY307qYss7Q/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/noodles-and-company-colorado-springs-2?adjust_creative=<YELP_CLIENT_ID>&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=<YELP_CLIENT_ID>",
+        "review_count": 54, "categories": [{"alias": "noodles", "title": "Noodles"},
+        {"alias": "salad", "title": "Salad"}, {"alias": "pastashops", "title": "Pasta
+        Shops"}], "rating": 3.0, "coordinates": {"latitude": 38.805593, "longitude":
+        -104.8216742}, "transactions": [], "price": "$", "location": {"address1":
+        "1812 Southgate Rd", "address2": "", "address3": "", "city": "Colorado Springs",
+        "zip_code": "80906", "country": "US", "state": "CO", "display_address": ["1812
+        Southgate Rd", "Colorado Springs, CO 80906"]}, "phone": "+17193850800", "display_phone":
+        "(719) 385-0800", "distance": 63313.31036123318}, {"id": "I0bqoB7hBs1_yCjJ-j9ugA",
+        "alias": "noodles-and-company-colorado-springs-5", "name": "Noodles & Company",
+        "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/LJP8Z7ZWtZ1HKk7jNfSj7g/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/noodles-and-company-colorado-springs-5?adjust_creative=<YELP_CLIENT_ID>&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=<YELP_CLIENT_ID>",
+        "review_count": 29, "categories": [{"alias": "noodles", "title": "Noodles"},
+        {"alias": "salad", "title": "Salad"}, {"alias": "pastashops", "title": "Pasta
+        Shops"}], "rating": 3.5, "coordinates": {"latitude": 38.9079304893076, "longitude":
+        -104.78263698054}, "transactions": [], "price": "$", "location": {"address1":
+        "2455 Montebello Square Dr", "address2": "", "address3": "", "city": "Colorado
+        Springs", "zip_code": "80918", "country": "US", "state": "CO", "display_address":
+        ["2455 Montebello Square Dr", "Colorado Springs, CO 80918"]}, "phone": "+17195945871",
+        "display_phone": "(719) 594-5871", "distance": 73191.37993452029}], "total":
+        6, "region": {"center": {"longitude": -104.5733642578125, "latitude": 38.27035217485165}}}'
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:58:26 GMT
+recorded_with: VCR 5.0.0

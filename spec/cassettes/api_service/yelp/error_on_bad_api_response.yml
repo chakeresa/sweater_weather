@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?categories=food&location=pueblo,%20co&open_at=1564421959&term=chinese
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <YELP_API_KEY>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json
+      X-Zipkin-Id:
+      - e1a85c2f246dda98
+      X-B3-Sampled:
+      - '0'
+      X-Proxied:
+      - 10-64-85-174-uswest1aprod
+      Content-Length:
+      - '181'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 30 Jul 2019 16:58:27 GMT
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-den19647-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{"error": {"code": "VALIDATION_ERROR", "description": "''Bearer <YELP_API_KEY>''
+        does not match ''^(?i)Bearer [A-Za-z0-9\\\\-\\\\_]{128}$''", "field": "Authorization",
+        "instance": "Bearer <YELP_API_KEY>"}}'
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 16:58:27 GMT
+recorded_with: VCR 5.0.0
