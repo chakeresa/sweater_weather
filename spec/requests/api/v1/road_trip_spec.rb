@@ -25,15 +25,23 @@ describe "Road Trip Endpoint" do
     
     it 'gets back a good response' do
       VCR.use_cassette('road_trip_endpoint/good_response', record: :new_episodes) do
-        # TODO: stub time
         post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
         expect(response).to have_http_status(200)
       end
     end
-    
+
+    it "response includes the data source" do
+      VCR.use_cassette('road_trip_endpoint/metadata', record: :new_episodes) do
+        post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
+        meta = JSON.parse(response.body, symbolize_names: true)[:meta]
+        
+        expect(meta[:data_source]).to have_key(:message)
+        expect(meta[:data_source]).to have_key(:link)
+      end
+    end
+
     it 'response includes the travel time + forecast at the arrival time/location' do
       VCR.use_cassette('road_trip_endpoint/travel_time_and_forecast', record: :new_episodes) do
-        # TODO: stub time
         post '/api/v1/road_trip', params: @request_body.to_json, headers: @headers
         data = JSON.parse(response.body, symbolize_names: true)[:data]
     

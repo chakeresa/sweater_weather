@@ -5,6 +5,9 @@ class RoadTripSerializer
 
   def full_response
     {
+      meta: {
+        data_source: data_source
+      },
       data: {
         id: 1,
         type: 'road_trip',
@@ -23,5 +26,9 @@ class RoadTripSerializer
       },
       travel_time_seconds: @facade.duration
     }
+  end
+
+  def data_source
+    { message: 'Powered by Dark Sky', link: 'https://darksky.net/poweredby/' }
   end
 end
