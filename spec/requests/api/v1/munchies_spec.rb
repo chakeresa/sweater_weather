@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe "Munchies Endpoint" do
+  before(:each) do
+    mock_time = Time.parse('2019-07-30 11:45:00 -0600')
+    allow(Time).to receive(:now).and_return(mock_time)
+  end
+
   describe 'good request' do
     it "gets back a good response" do
       VCR.use_cassette('munchies_endpoint/good_response', record: :new_episodes) do
