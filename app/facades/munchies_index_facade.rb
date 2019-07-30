@@ -6,9 +6,8 @@ class MunchiesIndexFacade
   end
   
   def restaurants
-    api_restaurants_hash[:businesses].first(3).map do |restaurant|
-      # TODO: make restaurant objects
-      restaurant
+    api_restaurants_hash[:businesses].first(3).map do |restaurant_hash|
+      Restaurant.new(restaurant_hash)
     end
   end
   

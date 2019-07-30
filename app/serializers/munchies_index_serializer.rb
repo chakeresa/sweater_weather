@@ -14,10 +14,9 @@ class MunchiesIndexSerializer
 
   def restaurants
     @facade.restaurants.map do |restaurant|
-      # TODO: change to restaurant.name, etc after PORO is made
       {
-        name: restaurant[:name],
-        address: restaurant[:location][:display_address]
+        name: restaurant.name,
+        address: restaurant.address
       }
     end
   end
