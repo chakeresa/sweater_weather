@@ -200,4 +200,54 @@ http_interactions:
         LANDSCAPE_GREGTHOW\" ispublic=\"1\" isfriend=\"0\" isfamily=\"0\" />\n</photos>\n</rsp>\n"
     http_version: 
   recorded_at: Tue, 30 Jul 2019 16:40:49 GMT
+- request:
+    method: get
+    uri: https://api.flickr.com/services/rest?api_key=<FLICKR_API_KEY>&content_type=relevance&method=flickr.photos.search&per_page=1&sort=relevance&text=denver,co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '208'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 31 Jul 2019 02:03:19 GMT
+      Server:
+      - Apache/2.4.39 (Ubuntu)
+      X-Robots-Tag:
+      - noindex
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 3f717e4fd5cbd6c94c4a3860328e1093.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Amz-Cf-Id:
+      - 5lPc9IJFs1BwvOTmctIMuPUI4YPe2hGfT1Ub2K4MK3Y4HT2lmCpUkQ==
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\">\n<photos
+        page=\"1\" pages=\"6863\" perpage=\"1\" total=\"6863\">\n\t<photo id=\"2077513828\"
+        owner=\"83301865@N00\" secret=\"179a39d5af\" server=\"2073\" farm=\"3\" title=\"\"
+        ispublic=\"1\" isfriend=\"0\" isfamily=\"0\" />\n</photos>\n</rsp>\n"
+    http_version: 
+  recorded_at: Wed, 31 Jul 2019 02:03:18 GMT
 recorded_with: VCR 5.0.0

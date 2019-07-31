@@ -1,7 +1,4 @@
 class BackgroundShowFacade
-  # TODO: delete attr_reader
-  attr_reader :location_string
-
   def initialize(location_string)
     @location_string = location_string
   end
@@ -19,8 +16,7 @@ class BackgroundShowFacade
     end
   end
 
-  # TODO: uncomment out
-  # private
+  private
 
   def flickr_api
     parameters = { location_string: @location_string }

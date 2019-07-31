@@ -6,8 +6,6 @@ class ApiService::Flickr < ApiService::Base
   end
 
   def image_url
-  # TODO: heroku has the following error:
-  # NoMethodError (undefined method `[]' for nil:NilClass): app/services/api_service/flickr.rb:9:in `image_url'
     farm_id = image_data['farm']
     server_id = image_data['server']
     id = image_data['id']
@@ -46,10 +44,9 @@ class ApiService::Flickr < ApiService::Base
   def image_search_params
     {
       method: 'flickr.photos.search',
-      tags: 'downtown',
       text: @location_string,
       sort: 'relevance',
-      content: 'relevance',
+      content_type: 'relevance',
       per_page: 1
     }
   end

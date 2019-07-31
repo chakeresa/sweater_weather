@@ -16,7 +16,7 @@ describe ApiService::Flickr do
       location_string = 'denver, co'
       service = ApiService::Flickr.new({ location_string: location_string })
       
-      expect(service.image_url).to eq('https://farm8.staticflickr.com/7314/16262388280_dd4edfa9a4.jpg')
+      expect(service.image_url).to eq('https://farm5.staticflickr.com/4325/36113488141_377936815a.jpg')
     end
   end
   
