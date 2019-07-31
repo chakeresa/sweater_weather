@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class ApiService::Flickr < ApiService::Base
   attr_reader :location_string
 
@@ -28,7 +26,7 @@ class ApiService::Flickr < ApiService::Base
   
   def fetch_xml_data(uri_path, params = {})
     response = conn.get uri_path, params
-    Nokogiri::XML.parse response.body
+    Hash.from_xml(response.body)
   end
   
   def image_data
@@ -38,11 +36,11 @@ class ApiService::Flickr < ApiService::Base
     Rails.logger.debug "Making Flickr image search API call (#{@location_string})"
     response = fetch_xml_data(uri_path, image_search_params)
     raise 'Bad Flickr API key' if bad_api_key?(response)
-    @image_data = response.at_xpath('//rsp/photos/photo')
+    @image_data = response['rsp']['photos']['photo']
   end
   
   def bad_api_key?(response)
-    response.at_xpath('//rsp').attributes['stat'].value != 'ok'
+    response['rsp']['stat'] != 'ok'
   end
   
   def image_search_params
