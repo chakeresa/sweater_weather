@@ -28,7 +28,7 @@ class ApiService::Flickr < ApiService::Base
   
   def fetch_xml_data(uri_path, params = {})
     response = conn.get uri_path, params
-    Nokogiri::XML response.body
+    Nokogiri::XML.parse response.body
   end
   
   def image_data
