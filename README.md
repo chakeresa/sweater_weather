@@ -38,6 +38,7 @@ YELP_API_KEY: <your yelp API key>
  - To enable caching in the development environment, run `$rails dev:cache` once
  - In one terminal, run `$redis-server` (may need to do `$brew update && brew install redis` first)
  - In another terminal, run `$bundle exec sidekiq`
+ - Initiate the daily image database refresh by running `$rake simple_scheduler`
 
 * Deployment instructions
  - `$git push heroku master`
