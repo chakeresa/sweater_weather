@@ -29,4 +29,12 @@ describe ApiService::Flickr do
       expect { service.image_url }.to raise_error('Bad Flickr API key')
     end
   end
+  
+  it '#image_url raises an error if the API response is empty' do
+    VCR.use_cassette('api_service/flickr/error_on_empty_api_response', record: :new_episodes) do
+      service = ApiService::Flickr.new({ location_string: 'asdfsdfdfsdf' })
+
+      expect { service.image_url }.to raise_error('No images found by Flickr API')
+    end
+  end
 end

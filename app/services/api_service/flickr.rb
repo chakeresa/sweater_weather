@@ -34,11 +34,16 @@ class ApiService::Flickr < ApiService::Base
     Rails.logger.debug "Making Flickr image search API call (#{@location_string})"
     response = fetch_xml_data(uri_path, image_search_params)
     raise 'Bad Flickr API key' if bad_api_key?(response)
+    raise 'No images found by Flickr API' if no_results?(response)
     @image_data = response['rsp']['photos']['photo']
   end
   
   def bad_api_key?(response)
     response['rsp']['stat'] != 'ok'
+  end
+
+  def no_results?(response)
+    !response['rsp']['photos'].has_key?('photo')
   end
   
   def image_search_params
