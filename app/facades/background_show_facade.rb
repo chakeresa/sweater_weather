@@ -8,8 +8,7 @@ class BackgroundShowFacade
     if image
       image.url
     else
-      # TODO: remove bang
-      image = Image.create!(
+      image = Image.create(
         title: @location_string, 
         url: flickr_api.image_url
       )
