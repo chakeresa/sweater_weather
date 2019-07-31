@@ -4,7 +4,7 @@ class BackgroundShowFacade
   end
 
   def image_url
-    image = Image.find_by(title: @location_string)
+    image = Image.find_by(title: @location_string.downcase)
     if image
       image.url
     else

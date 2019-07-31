@@ -21,8 +21,8 @@ describe "Backgrounds Endpoint" do
 
       expect(response).to be_successful
       expect(Image.count).to eq(1)
-      
-      get '/api/v1/backgrounds?location=denver,co'
+
+      get '/api/v1/backgrounds?location=DENVER,co'
 
       expect(response).to be_successful
       expect(Image.count).to eq(1)
