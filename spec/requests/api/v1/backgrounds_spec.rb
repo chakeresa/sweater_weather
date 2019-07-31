@@ -32,4 +32,16 @@ describe "Backgrounds Endpoint" do
       expect(data).to have_key(:url)
     end
   end
+  
+  it "doesn't error out if there are no results" do
+    VCR.use_cassette('backgrounds_endpoint/no_results', record: :new_episodes) do
+      get '/api/v1/backgrounds?location=asdfsdfdfsdf'
+
+      expect(response).to have_http_status(400)
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      expected_response = { error: 'No results' }
+      expect(response_body).to eq(expected_response)
+    end
+  end
 end
