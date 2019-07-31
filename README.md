@@ -36,6 +36,8 @@ YELP_API_KEY: <your yelp API key>
 
 * Services (job queues, cache servers, search engines, etc.)
  - To enable caching in the development environment, run `$rails dev:cache` once
+ - In one terminal, run `$redis-server` (may need to do `$brew update && brew install redis` first)
+ - In another terminal, run `$bundle exec sidekiq`
 
 * Deployment instructions
  - `$git push heroku master`
