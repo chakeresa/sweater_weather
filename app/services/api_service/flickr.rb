@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ApiService::Flickr < ApiService::Base
   attr_reader :location_string
 
